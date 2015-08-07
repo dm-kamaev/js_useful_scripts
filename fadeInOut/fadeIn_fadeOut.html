@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Не индексировать -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<title>fadeIn fadeOut</title>
+
+
+<style>
+
+    *{margin:0;padding:0}
+    body {font-family:Arial,Helvetica,sans-serif;font-size: 120%;}
+    ul,li{list-style:none}
+
+    img{border:0;}
+    table{border:0;border-collapse:collapse;}
+    table tr{vertical-align:top}
+    table td{padding:0}
+    a{color:#1A0DAB;text-decoration:underline;}  /* text-decoration:none */
+       a:visited{color:#1A0DAB}
+       a:hover  {color:#FF6633}
+
+    h1{display:inline;font-weight:normal;font-size:110%} /*color:#AB3C3C;*/
+    h2{ display: block;margin: 25px auto;font-weight: normal; font-size: 180%;
+        font-family: Georgia,serif; color:#CC3300; text-align: center;
+    }
+    p{margin-top: 12px;margin-bottom: 12px;line-height:1.5}
+    em{font-weight:bold;color:#0099CC}
+    strong{color:#AB3C3C}
+    b{color:#0099CC}
+    a:active, a:focus, img{outline:0}
+
+
+
+/* Для колонки таблицы, которую можно div задать*/
+.main_table_column{
+    display: inline-block;
+    width: 48%;
+    padding: 10px 0.5%;
+    vertical-align: top;
+    /*background-color:#F7F7F7;
+    border-radius:15px;*/
+}
+/* Правка для экранов меньше 640px*/
+@media screen and (max-width: 640px) {
+    .main_table_column{width:95%}
+}
+
+
+</style>
+</head>
+
+<body>
+
+	<h1 id="hello" style='opacity:1'>Hello world!</h1><br>
+	<h1>Example fadeIn_fadeOut</h1>
+  <script src='fadeIn_fadeOut.js'></script>
+
+</body>

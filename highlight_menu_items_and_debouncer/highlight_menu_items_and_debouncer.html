@@ -1,0 +1,377 @@
+
+
+<!-- Подсветка пунктов меню взависимости от того как проскролил пользователь. Код подсветки завернут в функцию обертку genHighlight.
+     Данную функцию передаем в функцию дебаунсер, которая ставит таймер на вызов функции genHighlight. Это сделано для того чтобы
+     не вызвать на скролл каждого пикселя, а ждать пока пользователь доскроллит. Уменьшаем количество вычислений.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подсветка пунктов меню взависимости от того как проскролил пользователь. Код подсветки завернут в функцию обертку genHighlight.
+           Данную функцию передаем в функцию дебаунсер, которая ставит таймер на вызов функции genHighlight. Это сделано для того чтобы
+           не вызвать на скролл каждого пикселя, а ждать пока пользователь доскроллит. Уменьшаем количество вычислений.
+    </title>
+
+<style>
+    *{margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif; font-size: 120%;}
+     ul,li{list-style:none}
+
+    img{border:0;}
+    table{border:0;border-collapse:collapse;}
+    table tr{vertical-align:top}
+    table td{padding:0}
+    a{color:#1a50bd;text-decoration:none}
+        a:visited{color:#551A8B}
+
+    /*h1{display:inline;font-weight:normal;font-size:110%}*/ /*color:#AB3C3C;*/
+    h2{color:#506A85}
+    p{margin-top: 12px;margin-bottom: 12px;}
+    em{font-weight:bold;color:#0099CC}
+    strong{color:#AB3C3C}
+    b{color:#0099CC}
+    a:active, a:focus, img{outline:0}
+
+/* Для главной  ЦЕНТРАЛЬНОЙ ТАБЛИЦЫ*/
+.l_column{
+    display: inline-block;
+    width: 32%;
+    padding: 10px 0.5%;
+    vertical-align: top;
+    /*background-color:#F7F7F7;
+    border-radius:15px;*/
+    margin-top: 40px;
+
+}
+
+.r_column{
+    display: inline-block;
+    width: 62%;
+    text-align: justify;
+    padding: 10px 0.5%;
+    vertical-align: top;
+    margin-top: 40px;
+}
+
+
+#menu {
+    width: 920px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 50px;
+    background: #69c;
+}
+  #menu ul {
+    padding:0;
+    margin:0;
+  }
+  #menu li{
+    display: inline;
+    list-style:none;
+    margin: 5px 10px;
+  }
+     #menu li a {
+        padding:5px 10px;
+        color:#fff;
+        text-decoration: none;
+     }
+     #menu li a:hover{
+        background: #36c;
+        color: #ff0;
+     }
+
+#menu.fixed {
+            position:fixed;
+            top:0; left:0;
+            width:100%;
+}
+
+
+.shift{margin-top:40px;}
+
+
+
+
+.price{
+    border: 2px solid #eee;
+    border-radius: 10px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+.price td {
+    padding: 15px;
+    border: 1px solid #eee;
+    font-family: Georgia,serif;
+}
+
+/* Заголовок таблицы - 1 строка */
+.first_row {
+    /* font-family: Georgia,serif; */
+    font-size: 130%;
+    color:#506A85;
+    text-align: center;
+
+}
+
+
+
+@media screen and (max-width: 640px) {
+
+  .l_column{width:95%}
+  .r_column{width:95%}
+  img{max-width:100%!important;height:auto!important}
+}
+</style>
+
+
+</head>
+<body>
+
+
+<div id="menu" class="fixed">
+        <ul>
+            <li><a id="01" href="#">О нас</a></li>
+            <li><a id="11" href="#">Услуги</a></li>
+            <li><a id="21" href="#">Наши работы</a></li>
+            <li><a         href="#">Контакты</a></li>
+        </ul>
+</div>
+
+
+
+<div style="border-style: 2px solid brown;max-width:1000px;margin:20px auto;padding:0 2px;text-align: center;">
+
+    <div style="margin-top: 70px;margin-bottom: 15px;width: 100%;text-align:right;font-size: 160% ;">
+        Телефон для заказов: 8(926)-839-0723
+    </div>
+
+    <img src="logo.png" style="max-width: 100%;height:auto;" alt="">
+
+    <div class=l_column> <p>Меню: Контакты:</p>
+
+    </div>
+
+    <div class=r_column>
+
+
+<div class=shift id="0">
+    <p>
+        <img src="face.jpg" style="float:left;margin: 7px 9px 7px 0;height:174px;width:130px"  alt="мастер">
+        Лазарь Иван Петрович предлагает услуги по отделке и ремонту жилых и офисных помещений в Москве.<br>
+
+        <span style="font-style:italic;text-decoration: underline;">Опыт:</span>
+        Иван Петрович является Мастером-бригады. В составе бригады – до 8 человек.
+        Имеется десятилетний опыт работы в сфере ремонта, с 2006 года.
+        Расположение бригады в районе Кожуховская. Выезд к клиенту осуществляется в Москву и Москвоскую область.<br>
+
+        <span style="font-style:italic;text-decoration: underline;">Образование:</span>
+        Окончил  СПТУ в городе Глодяны, по специальности  каменщик. Являюсь газоэлектросварщиком 4-го разряда с 2000 года.
+   </p>
+</div>
+
+
+<div class=shift id="1">
+    <h2>Услуги</h2>
+    <p>
+        Оказываются услуги сантехника, плиточника, электрика и оклейки обоев в Москве и Московской области.
+        Кроме того, возможен полноценный ремонт квартир, коттеджей и офисов, а также
+        выполнение изоляционных работ и наружное освещение.
+    </p>
+
+    Дополнительные услуги:
+    <ul>
+        <li>работы с ГКЛ (гипсокартонными листами)</li>
+        <li>звукоизоляция и шумоизоляция помещений</li>
+        <li>выезд в Московскую область</li>
+    </ul><br>
+
+    Объекты работ:
+    <ul>
+        <li>квартиры</li>
+        <li>коттеджи</li>
+        <li>дачи</li>
+        <li>офисы</li>
+    </ul>
+
+
+
+    <table class="price">
+
+    <tr>
+        <th class=first_row> Услуги </th>
+        <th class=first_row> Цены </th>
+    </tr>
+
+    <tr>
+        <td> Комплексный ремонт «под ключ» </td>
+        <td> от 7000 руб. (1 кв.м)</td>
+    </tr>
+
+    <tr>
+        <td>  Косметический ремонт </td>
+        <td> от 3000 руб. (1 кв.м) </td>
+    </tr>
+
+    <tr>
+        <td> Плиточные работы </td>
+        <td> от 650 руб. (1 кв.м) </td>
+    </tr>
+
+    <tr>
+        <td> Работы с ГКЛ </td>
+        <td> от 450 руб. (1 кв.м) </td>
+    </tr>
+
+    </table>
+
+</div>
+
+<div class=shift  id="2">
+    <h2>Наши работы</h2>
+
+    <p>Пример работы с плиткой</p>
+    <img src="http://fakeimg.pl/350x200/00CED1/FFF/?text=img+placeholder">
+
+    <p>Пример работы с плиткой</p>
+    <img src="http://fakeimg.pl/350x200/00CED1/FFF/?text=img+placeholder">
+
+    <p>Пример работы с плиткой</p>
+    <img src="http://fakeimg.pl/350x200/00CED1/FFF/?text=img+placeholder">
+
+    <p>Пример работы с плиткой</p>
+    <img src="http://fakeimg.pl/350x200/00CED1/FFF/?text=img+placeholder">
+
+    <p>Пример работы с плиткой</p>
+    <img src="http://fakeimg.pl/350x200/00CED1/FFF/?text=img+placeholder">
+
+</div>
+
+
+    </div>
+
+</div>
+
+
+
+<!--  div созданный , для того чтобы передвижение по id передвигало страницу в самый вверх -->
+<!-- <div style=margin:1300px></div> -->
+
+
+
+<script>
+
+// [].forEach.call(document.querySelectorAll("*"),function(a){a.style.outline="2px solid #"+(~~(Math.random()*(1<<24))).toString(16)})
+
+/**
+ * [debounce – делает следующее при binding  обнулится дескриптор таймера, а затем при каждом скролле будет проверяться, если есть
+ * уже таймер на вызов функции, то чистим старый и ставим новый таймер. Если не стоит таймер, то просто ставим таймер. Это сделано
+ * для того, чтобы на каждый скролл не вызывать функцию (подсветки пунктов меню), а только когда пользователь перестал скроллить.]
+ * @param  {[digit]}   ms [милиссекунды для таймера, например, 1000]
+ * @param  {function}  cb [функция для вызова по таймеру, например, genHighlight]
+ */
+function debounce(ms, cb){
+    var idTime = null;
+    return function(){
+        if(idTime) clearTimeout(idTime);
+        idTime = setTimeout(cb, ms);
+    }
+}
+
+/**
+ * [genHighlight – функция, которая подсвечивает пункты меню]
+ */
+function genHighlight () {
+
+    // Массив где, первый элемент id блока до которого пользователь доскроллил, а второй элемент id пункта меню соответствующего
+    var arrayIdPartAndIdMenu=[ [0,'01'], [1,'11'], [2,'21'] ];
+    // Заполненно и выбрано. Пункт меню, который подсветили в предыдущий раз. Глобально помним его
+    var oldEl=null;
+
+        return function () {
+
+        // Текущий выбраный пункт меню, который будет подсвечен
+        var newEl=null;
+        console.log('______________________________________________________________');
+
+            for (var i = 0; i<=2; i++) {
+
+
+                    var el=getByID(arrayIdPartAndIdMenu[i][0]);
+                    // console.log(el);
+
+                    // console.log( el.getBoundingClientRect() );
+                    var objView=el.getBoundingClientRect();
+
+                     // console.log('Top === ',objView.top);
+                     // console.log('Height element === ',objView.height);
+                    var bottom=objView.top + objView.height;
+                    // console.log('Bottom элемента === ',bottom);
+
+                    // console.log('Элементы меню === ',oneEl);
+
+// Смотрим попал объект в диапазон или нет. objView.top –– то сколько скроллить до того момента (положительное значение),
+// когда верхушка окна браузера совпадет с вершиной блока (это ноль). После этого момента objView.top станет отрицательным.
+// bottom –– это сумма objView.top и objView.height (высоты блока). Пока до элемента не до скролилли сумма будет положительной, но
+// будет уменьшаться. Когда доскроллили до элемента сумма станет равна высоте элемента, а затем начнет падать, пока не станет отрицательной
+// (элемент скрылся с экрана)
+                if (objView.top < 40 && bottom > 0  ) {
+
+                    console.log('УВИДЕЛИ');
+                    console.log(el);
+                    console.log('Top el === '+objView.top);
+                    console.log('Height el === ',objView.height);
+                    console.log('Bottom el === ',bottom);
+
+                    var oneEl=getByID(arrayIdPartAndIdMenu[i][1]);
+
+
+                    console.log('ПОДСВЕТИЛИ C ID ' + el.id);
+
+                    console.log('---------------------------');
+
+                    // Если увидели элемент,то текущий элемент(oneEl) становится новым элементом(newEl), который должен быть посдвечен
+                    // Затем вываливаемся из цикла (break), ибо не зачем считать обращаться к DOM, достаточно одного элемента
+                    newEl=oneEl;
+                    break;
+
+                }
+        }
+    // Что ЛЮБОЙ из них можеть быть null. Например, в начале, когда ни один блок не попал в зону видимости, оба null
+    // Или, если новый элемент, который хотим подсветить и является элементом, который и так подсвечен
+    if (newEl!==oldEl) {
+        // Если есть новый пункт, который надо подсветить,то подсвечиваем его
+        if (newEl) {
+            newEl.style.border='2px solid red';
+        }
+        // Если есть старый пункт, который надо погасить,то гасим его
+        if (oldEl) {
+            oldEl.style.border='';
+        }
+
+        // В любом случае переопределяем старый пункт меню (который глобально объявлен), путем присвоения нового элемента
+        oldEl=newEl;
+    }
+
+
+        console.log('______________________________________________________________');
+
+
+    } // Кончилась функция genHighlight
+
+}
+
+// Binding
+window.onscroll=debounce(100, genHighlight() );
+
+
+
+function getByID (id) {
+    var oneEl=document.getElementById(id);
+    return oneEl;
+}
+
+</script>
+
+</body>
+</html>

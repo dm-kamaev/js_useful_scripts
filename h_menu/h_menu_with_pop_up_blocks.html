@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset=UTF-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Не индексировать -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<title>Меню со всплывающими по клику блоками</title>
+
+<style>
+
+    *{margin:0;padding:0}
+    body {font-family:Arial,Helvetica,sans-serif;font-size: 120%;}
+    ul,li{list-style:none}
+
+    img{border:0;}
+    table{border:0;border-collapse:collapse;}
+    table tr{vertical-align:top}
+    table td{padding:0}
+    a{color:#1A0DAB;text-decoration:underline;}  /* text-decoration:none */
+       /*a:visited{color:#1A0DAB}*/
+       /*a:hover  {color:#FF6633}*/
+
+    h1{display:inline;font-weight:normal;font-size:110%} /*color:#AB3C3C;*/
+    h2{ display: block;margin: 25px auto;font-weight: normal; font-size: 180%;
+        font-family: Georgia,serif; color:#CC3300; text-align: center;
+    }
+    p{margin-top: 12px;margin-bottom: 12px;line-height:1.5}
+    em{font-weight:bold;color:#0099CC}
+    strong{color:#AB3C3C}
+    b{color:#0099CC}
+    a:active, a:focus, img{outline:0}
+
+
+
+/* Для колонки таблицы, которую можно div задать*/
+.main_table_column{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    margin: 5px auto 35px auto;
+    /*border: 1px solid red;*/
+}
+
+.h_menu {
+    position: relative;
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 10px;
+    background: #128F9A;
+    background-image: linear-gradient(to left bottom, #4EC9D4 0%, #128F9A 100%);
+
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+         box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+         box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.h_menu ul{
+  padding:0;
+  margin:0;
+  border-radius: 6px;
+  border: 1px solid #0e7079;
+}
+.h_menu li{
+  display:inline-block;
+  list-style:none;
+  margin: 5px 2%;
+  /*border: 3px solid brown;*/
+}
+
+/*Ссылки <a> в ul оформляем*/
+.h_menu_links{
+  padding:5px 10px;
+  color:#fff;
+  text-decoration:none;
+  border-bottom: 1px solid #fff;
+  border-radius: 0 0 7px 7px;
+}
+
+.h_menu_links:hover{
+  background: #138791;
+  color: #eee;
+  border-radius: 10px;
+  border-bottom: 0 solid #138791;
+}
+
+/*Всплывающий блок и треугольник(стрелка)*/
+.pop_up {
+  position:absolute;
+  box-shadow: 11px 11px 24px 0px rgba(50, 50, 50, 0.75);
+  border: 2px solid #168D98;
+  border-radius: 10px;
+  background:#fff;
+  top: 78px;
+  font-size: 80%;
+  max-width: 600px;
+}
+
+.triangle {
+  position:absolute;
+  width: 0;
+  height: 0;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-bottom: 13px solid #168D98;
+  margin-top: 10px;
+  margin-left: 12px;
+}
+
+/*Крестик и тексты внутри всплывающего блока*/
+
+.cross{
+  font-size: 200%;
+  line-height: .5;
+  width: 2%;
+  margin: 2px 2% 2px 97%;
+  cursor: pointer;
+  color: #666;
+  /*border: 2px solid brown;*/
+}
+
+.links_teachers p{
+  padding: 0 2%;
+  text-align: justify;
+  /*border: 2px solid brown*/
+}
+
+.links_teachers a{
+  font-size: 95%;
+  font-weight: 100;
+  color: #33f;
+  text-shadow: none;
+}
+.links_teachers a:hover{color:#CC3366}
+
+/* Правка для экранов меньше 640px*/
+@media screen and (max-width: 640px) {
+    .main_table_column{width:95%}
+}
+
+</style>
+</head>
+<body>
+<div class=main_table_column>
+
+  <ul id='h_menu' class=h_menu>
+    <li>
+      <a id='h_menu_item_1_show' class=h_menu_links href="#">Репетиторы</a>
+
+      </li>
+      <li>
+        <a id='h_menu_item_2_show' href="#" class="h_menu_links">Разместить резюме репетитора</a>
+      </li>
+      <li>
+        <a id='h_menu_item_3_show' href="#" class="h_menu_links">Разместить резюме репетитора</a>
+      </li>
+
+  </ul>
+
+</div>
+
+<script src="h_menu_with_pop_up_blocks.js"></script>
+  <script>
+  </script>
+
+
+
+
+</body>
