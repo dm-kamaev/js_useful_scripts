@@ -29,6 +29,7 @@ function fadeInOut(el, way, displayType, time, callback){
     // End fadeOut
     else if (info.op <= 0 && way === 'Out') {
       el.style.display = displayType; // как правило это none
+      el.style.opacity = 0;
       if (callback) {callback();}
     }
     else {
